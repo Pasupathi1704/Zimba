@@ -683,8 +683,11 @@ function renderAttachments() {
 function renderMarkdown(markdown) {
   let text = escapeHtml(markdown);
 
+  // Normalize common line-break text returned by models before block parsing.
+  text = text.replace(/&lt;br\s*\/?&gt;/gi, "<br>");
+
   // Preserve and format code blocks
-  text = text.replace(/```([\w-]*)\n?([\s\S]*?)```/g, (_, language, code) => `<pre><code data-language="${language}">${code.trim()}</code></pre>`);
+  text = text.replace(/```([\w-]*)\n?([\s\S]*?)```/g, (_, language, code) => `<pre><code data-language="${language}">${code.replace(/\\n/g, "\n").trim()}</code></pre>`);
 
   // Parse Markdown Tables
   text = text.replace(/(?:(?:^|\n)\|[^\n]+\|\r?\n(?:\|(?:\s*:?-+:?\s*\|)+)\r?\n(?:\|[^\n]+\|\r?\n?)+)/g, (tableMatch) => {
