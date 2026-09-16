@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>Zimba | Chat</title>
+    <link rel='preconnect' href='https://fonts.googleapis.com' />
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
+    <link href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap' rel='stylesheet' />
+    <script type="module" crossorigin src="/assets/index-BHexHQj-.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CRNVpIX6.css">
+  </head>
+  <body>
+    <div class='app-shell'>
+      <aside class='sidebar' id='sidebar'>
+        <div class='sidebar-top'>
+          <button class='brand' aria-label='Zimba home'>
+            <span class='brand-mark'><span></span><span></span><span></span></span>
+            <span>Zimba</span>
+          </button>
+          <button class='icon-button close-sidebar' id='closeSidebar' aria-label='Close sidebar'>&#10005;</button>
+        </div>
+
+        <button class='new-chat' id='newChat'><span class='plus'>+</span> New conversation <kbd>Ctrl K</kbd></button>
+
+        <div class='sidebar-search' id='sidebarSearch' hidden>
+          <span aria-hidden='true'>⌕</span>
+          <input id='sidebarSearchInput' type='search' placeholder='Search conversations...' autocomplete='off' />
+          <button id='closeSidebarSearch' aria-label='Close conversation search'>&#10005;</button>
+        </div>
+
+        <nav class='history' aria-label='Conversation history'>
+          <p class='section-label'>Today</p>
+          <div id='storedHistory'></div>
+          <button class='history-item active'><span class='history-icon'>✦</span><span>Untangling a complex idea</span><span class='more'>•••</span></button>
+          <button class='history-item'><span class='history-icon'>◌</span><span>Notes on creative momentum</span></button>
+          <button class='history-item'><span class='history-icon'>◌</span><span>Plan a weekend in Kyoto</span></button>
+          <p class='section-label older'>Previous 7 days</p>
+          <button class='history-item'><span class='history-icon'>◌</span><span>The psychology of color</span></button>
+          <button class='history-item'><span class='history-icon'>◌</span><span>Build a better morning</span></button>
+          <button class='history-item'><span class='history-icon'>◌</span><span>Explain quantum computing</span></button>
+          <p class='sidebar-search-empty' id='sidebarSearchEmpty' hidden>No conversations found.</p>
+        </nav>
+
+        <div class='sidebar-bottom'>
+          <button class='utility-item' id='searchConversations'><span>⌘</span> Search conversations <kbd>⌘ K</kbd></button>
+          <button class='utility-item'><span>?</span> Help center</button>
+          <div class='account'>
+            <div class='avatar'>PM</div>
+            <div class='account-copy'><strong>Pasup M</strong><small>Personal workspace</small></div>
+            <span class='chevron'>⌄</span>
+          </div>
+        </div>
+      </aside>
+
+      <main class='main-content'>
+        <header class='topbar'>
+          <button class='icon-button menu-button' id='openSidebar' aria-label='Open sidebar'>☰</button>
+          <button class='model-picker' id='modelPicker' aria-expanded='false'>
+            <span class='model-orb small-orb'></span>
+            <span>Zimba Core</span><span class='model-badge'>Preview</span><span class='chevron'>⌄</span>
+          </button>
+          <div class='topbar-actions'>
+            <button class='icon-button' aria-label='Share conversation'>↗</button>
+            <button class='icon-button' aria-label='More options'>•••</button>
+          </div>
+          <div class='model-menu' id='modelMenu'>
+            <p class='picker-label'>Models</p>
+            <button class='model-option selected'><span class='model-orb violet-orb'></span><span><strong>Zimba Core</strong><small>Our most capable model</small></span><span>✓</span></button>
+            <button class='model-option'><span class='model-orb mint-orb'></span><span><strong>Zimba Lite</strong><small>Quick answers for everyday tasks</small></span></button>
+            <button class='model-option'><span class='model-orb amber-orb'></span><span><strong>Zimba Reasoning</strong><small>Thoughtful and reliable</small></span></button>
+            <p class='picker-label agent-label'>Agent modes</p>
+            <button class='agent-option selected'><span class='agent-icon coral'>⌘</span><span><strong>Generalist</strong><small>Balanced help for any task</small></span><span>✓</span></button>
+            <button class='agent-option'><span class='agent-icon blue'>⌁</span><span><strong>Software Engineer</strong><small>Code, debug, test, and explain</small></span></button>
+            <button class='agent-option'><span class='agent-icon gold'>◒</span><span><strong>Research Analyst</strong><small>Compare evidence and find patterns</small></span></button>
+            <button class='agent-option'><span class='agent-icon mint'>✦</span><span><strong>Creative Designer</strong><small>Shape ideas, writing, and visuals</small></span></button>
+          </div>
+        </header>
+
+        <section class='conversation' id='conversation'>
+          <div class='workspace-grid'>
+            <div class='main-pane'>
+              <div class='welcome-block'>
+                <div class='hero-orb'><span class='orb-core'></span><span class='orb-ring ring-one'></span><span class='orb-ring ring-two'></span></div>
+                <p class='eyebrow'>Zimba Core <span>•</span> Preview</p>
+                <h1>What will we <em>create</em><br />today?</h1>
+                <p class='welcome-copy'>A thoughtful assistant for work, ideas, and everyday questions.</p>
+              </div>
+
+              <div class='suggestions' id='suggestions'>
+                <button class='suggestion'><span class='suggestion-icon coral'>✦</span><span><strong>Explore an idea</strong><small>Help me think this through</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion'><span class='suggestion-icon blue'>⌁</span><span><strong>Make something</strong><small>Write, design, or build with me</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion'><span class='suggestion-icon gold'>◒</span><span><strong>Get perspective</strong><small>See the bigger picture</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion'><span class='suggestion-icon mint'>✦</span><span><strong>Refine a draft</strong><small>Rewrite and sharpen the wording</small></span><span class='arrow'>↗</span></button>
+              </div>
+            </div>
+
+            <aside class='preview-panel' aria-label='Idea preview'>
+              <div class='preview-header'>
+                <div>
+                  <span class='mini-tag'>Creative</span>
+                </div>
+                <button class='share-btn'>Share</button>
+              </div>
+
+              <div class='preview-card'>
+                <div class='preview-surface' aria-hidden='true'>
+                  <span class='shape shape-one'></span>
+                  <span class='shape shape-two'></span>
+                  <span class='shape shape-three'></span>
+                </div>
+
+                <div class='preview-stack'>
+                  <div class='mini-card'><span class='mini-bubble'></span><small>Strategy brief</small></div>
+                  <div class='mini-card'><span class='mini-bubble accent'></span><small>Campaign ideas</small></div>
+                </div>
+
+                <div class='mini-card'><span class='mini-bubble'></span><small>Product concept: adaptive research assistant</small></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <footer class='composer-wrap'>
+          <div class='composer' id='composer'>
+            <input id='fileInput' type='file' accept='image/png,image/jpeg,image/webp,text/plain,.md,.csv,.json' hidden multiple />
+            <textarea id='promptInput' rows='1' placeholder='Ask Zimba anything...'></textarea>
+            <div class='attachment-list' id='attachmentList' aria-live='polite'></div>
+            <div class='composer-tools'>
+              <div class='tool-group'>
+                <button class='tool-button' id='attachButton' aria-label='Attach file'>＋</button>
+                <button class='tool-button' aria-label='Browse tools'>⌘</button>
+              </div>
+              <div class='tool-group right-tools'>
+                <button class='voice-toggle-button' id='voiceOutputToggle' aria-label='Disable voice output' title='Voice output'>🔊</button>
+                <button class='voice-button' aria-label='Use voice'>◉</button>
+                <button class='send-button' id='sendButton' aria-label='Send message'>↑</button>
+              </div>
+            </div>
+          </div>
+          <p class='composer-note' id='composerNote'>Zimba can make mistakes. Check important information.</p>
+        </footer>
+      </main>
+    </div>
+    <div class='mobile-scrim' id='mobileScrim'></div>
+    <div class='search-dialog-backdrop' id='searchDialogBackdrop' hidden>
+      <section class='search-dialog' role='dialog' aria-modal='true' aria-labelledby='searchDialogTitle'>
+        <div class='search-dialog-header'>
+          <h2 id='searchDialogTitle'>Search conversations</h2>
+          <button class='icon-button' id='closeSearch' aria-label='Close search'>&#10005;</button>
+        </div>
+        <label class='search-field'>
+          <span aria-hidden='true'>⌕</span>
+          <input id='conversationSearch' type='search' placeholder='Search by title...' autocomplete='off' />
+          <kbd>Esc</kbd>
+        </label>
+        <div class='search-results' id='searchResults' role='listbox' aria-label='Conversation results'></div>
+      </section>
+    </div>
+  </body>
+</html>
