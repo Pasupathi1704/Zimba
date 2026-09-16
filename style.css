@@ -80,6 +80,8 @@ kbd { padding: 2px 6px; border: 1px solid rgba(163,178,186,0.18); border-radius:
 .model-option > span:nth-child(2), .agent-option > span:nth-child(2) { display: flex; flex-direction: column; gap: 3px; flex: 1; }
 .model-option strong, .agent-option strong { font-size: 12px; }
 .model-option small, .agent-option small { color: var(--muted); font-size: 10px; }
+.selection-check { visibility: hidden; color: var(--green); font-weight: 700; }
+.agent-option.selected .selection-check { visibility: visible; }
 .agent-icon { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 8px; background: rgba(255,255,255,0.05); color: #dfeaf1; font-size: 12px; font-weight: 700; }
 .violet-orb { background: linear-gradient(135deg, #d9b8ff, #8d6af7); }
 .mint-orb { background: linear-gradient(135deg, #97f0d5, #39b9a6); }

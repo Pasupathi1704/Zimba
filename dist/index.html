@@ -7,8 +7,8 @@
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
     <link href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap' rel='stylesheet' />
-    <script type="module" crossorigin src="/assets/index-BHexHQj-.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-CRNVpIX6.css">
+    <script type="module" crossorigin src="/assets/index-CycyAO3B.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CZMxDSk5.css">
   </head>
   <body>
     <div class='app-shell'>
@@ -61,6 +61,7 @@
             <span>Zimba Core</span><span class='model-badge'>Preview</span><span class='chevron'>⌄</span>
           </button>
           <div class='topbar-actions'>
+            <button class='icon-button' id='themeToggle' aria-label='Toggle theme' title='Toggle light/dark mode'>🌓</button>
             <button class='icon-button' aria-label='Share conversation'>↗</button>
             <button class='icon-button' aria-label='More options'>•••</button>
           </div>
@@ -70,10 +71,10 @@
             <button class='model-option'><span class='model-orb mint-orb'></span><span><strong>Zimba Lite</strong><small>Quick answers for everyday tasks</small></span></button>
             <button class='model-option'><span class='model-orb amber-orb'></span><span><strong>Zimba Reasoning</strong><small>Thoughtful and reliable</small></span></button>
             <p class='picker-label agent-label'>Agent modes</p>
-            <button class='agent-option selected'><span class='agent-icon coral'>⌘</span><span><strong>Generalist</strong><small>Balanced help for any task</small></span><span>✓</span></button>
-            <button class='agent-option'><span class='agent-icon blue'>⌁</span><span><strong>Software Engineer</strong><small>Code, debug, test, and explain</small></span></button>
-            <button class='agent-option'><span class='agent-icon gold'>◒</span><span><strong>Research Analyst</strong><small>Compare evidence and find patterns</small></span></button>
-            <button class='agent-option'><span class='agent-icon mint'>✦</span><span><strong>Creative Designer</strong><small>Shape ideas, writing, and visuals</small></span></button>
+            <button type='button' class='agent-option selected' aria-pressed='true'><span class='agent-icon coral'>⌘</span><span><strong>Generalist</strong><small>Balanced help for any task</small></span><span class='selection-check' aria-hidden='true'>✓</span></button>
+            <button type='button' class='agent-option' aria-pressed='false'><span class='agent-icon blue'>⌁</span><span><strong>Software Engineer</strong><small>Code, debug, test, and explain</small></span><span class='selection-check' aria-hidden='true'>✓</span></button>
+            <button type='button' class='agent-option' aria-pressed='false'><span class='agent-icon gold'>◒</span><span><strong>Research Analyst</strong><small>Compare evidence and find patterns</small></span><span class='selection-check' aria-hidden='true'>✓</span></button>
+            <button type='button' class='agent-option' aria-pressed='false'><span class='agent-icon mint'>✦</span><span><strong>Creative Designer</strong><small>Shape ideas, writing, and visuals</small></span><span class='selection-check' aria-hidden='true'>✓</span></button>
           </div>
         </header>
 
@@ -129,7 +130,7 @@
             <div class='composer-tools'>
               <div class='tool-group'>
                 <button class='tool-button' id='attachButton' aria-label='Attach file'>＋</button>
-                <button class='tool-button' aria-label='Browse tools'>⌘</button>
+                <button class='tool-button' id='imageButton' aria-label='Generate image from prompt' title='Generate image'>✦</button>
               </div>
               <div class='tool-group right-tools'>
                 <button class='voice-toggle-button' id='voiceOutputToggle' aria-label='Disable voice output' title='Voice output'>🔊</button>

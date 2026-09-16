@@ -22,7 +22,8 @@ const sidebarSearchEmpty = document.querySelector("#sidebarSearchEmpty");
 const storedHistory = document.querySelector("#storedHistory");
 const historyStorageKey = "zimba-conversations";
 let selectedModel = "Zimba Core";
-let selectedAgent = "Generalist";
+const agentStorageKey = "zimba-selected-agent";
+let selectedAgent = window.localStorage.getItem(agentStorageKey) || "Generalist";
 let messages = [];
 let attachments = [];
 let isSending = false;
@@ -249,11 +250,23 @@ document.querySelectorAll(".model-option").forEach((option) => {
 
 document.querySelectorAll(".agent-option").forEach((option) => {
   option.addEventListener("click", () => {
-    document.querySelectorAll(".agent-option").forEach((item) => item.classList.remove("selected"));
+    document.querySelectorAll(".agent-option").forEach((item) => {
+      item.classList.remove("selected");
+      item.setAttribute("aria-pressed", "false");
+    });
     option.classList.add("selected");
+    option.setAttribute("aria-pressed", "true");
     selectedAgent = option.querySelector("strong").textContent;
+    window.localStorage.setItem(agentStorageKey, selectedAgent);
     modelMenu.classList.remove("open");
   });
+});
+
+// Restore the last chosen agent when the page is reopened.
+document.querySelectorAll(".agent-option").forEach((option) => {
+  const isSelected = option.querySelector("strong").textContent === selectedAgent;
+  option.classList.toggle("selected", isSelected);
+  option.setAttribute("aria-pressed", String(isSelected));
 });
 
 document.querySelectorAll(".suggestion").forEach((suggestion) => {
