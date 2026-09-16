@@ -6,7 +6,7 @@
     <title>Zimba | Chat</title>
     <link rel='preconnect' href='https://fonts.googleapis.com' />
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin />
-    <link href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap' rel='stylesheet' />
+    <link href='https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap' rel='stylesheet' />
     <link rel='stylesheet' href='/style.css' />
   </head>
   <body>
@@ -60,7 +60,8 @@
             <span>Zimba Core</span><span class='model-badge'>Preview</span><span class='chevron'>⌄</span>
           </button>
           <div class='topbar-actions'>
-            <button class='icon-button' id='themeToggle' aria-label='Toggle theme' title='Toggle light/dark mode'>🌓</button>
+            <span class='system-status'><i></i> Ready</span>
+            <button class='icon-button theme-toggle' id='themeToggle' aria-label='Use light theme' title='Use light theme'><span aria-hidden='true'>◐</span></button>
             <button class='icon-button' aria-label='Share conversation'>↗</button>
             <button class='icon-button' aria-label='More options'>•••</button>
           </div>
@@ -83,15 +84,15 @@
               <div class='welcome-block'>
                 <div class='hero-orb'><span class='orb-core'></span><span class='orb-ring ring-one'></span><span class='orb-ring ring-two'></span></div>
                 <p class='eyebrow'>Zimba Core <span>•</span> Preview</p>
-                <h1>What will we <em>create</em><br />today?</h1>
+                <h1>What shall we <em>make</em><br />of today?</h1>
                 <p class='welcome-copy'>A thoughtful assistant for work, ideas, and everyday questions.</p>
               </div>
 
               <div class='suggestions' id='suggestions'>
-                <button class='suggestion'><span class='suggestion-icon coral'>✦</span><span><strong>Explore an idea</strong><small>Help me think this through</small></span><span class='arrow'>↗</span></button>
-                <button class='suggestion'><span class='suggestion-icon blue'>⌁</span><span><strong>Make something</strong><small>Write, design, or build with me</small></span><span class='arrow'>↗</span></button>
-                <button class='suggestion'><span class='suggestion-icon gold'>◒</span><span><strong>Get perspective</strong><small>See the bigger picture</small></span><span class='arrow'>↗</span></button>
-                <button class='suggestion'><span class='suggestion-icon mint'>✦</span><span><strong>Refine a draft</strong><small>Rewrite and sharpen the wording</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion' data-prompt='Help me turn a rough idea into a clear plan. Start by asking what outcome I want.'><span class='suggestion-icon coral'>✦</span><span><strong>Shape a rough idea</strong><small>Turn loose thoughts into a plan</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion' data-prompt='Help me create something from scratch. Ask me for the audience, format, and tone first.'><span class='suggestion-icon blue'>⌁</span><span><strong>Make from scratch</strong><small>Write, design, or build together</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion' data-prompt='Challenge my current thinking. Show me the strongest alternative perspectives and tradeoffs.'><span class='suggestion-icon gold'>◒</span><span><strong>Challenge my thinking</strong><small>Find blind spots and tradeoffs</small></span><span class='arrow'>↗</span></button>
+                <button class='suggestion' data-prompt='Improve my draft while keeping my voice. Make it clearer, tighter, and more convincing.'><span class='suggestion-icon mint'>✦</span><span><strong>Polish a draft</strong><small>Keep the voice, sharpen the words</small></span><span class='arrow'>↗</span></button>
               </div>
             </div>
 
@@ -124,7 +125,8 @@
         <footer class='composer-wrap'>
           <div class='composer' id='composer'>
             <input id='fileInput' type='file' accept='image/png,image/jpeg,image/webp,text/plain,.md,.csv,.json' hidden multiple />
-            <textarea id='promptInput' rows='1' placeholder='Ask Zimba anything...'></textarea>
+            <label class='sr-only' for='promptInput'>Message Zimba</label>
+            <textarea id='promptInput' rows='1' maxlength='4000' placeholder='Message Zimba…'></textarea>
             <div class='attachment-list' id='attachmentList' aria-live='polite'></div>
             <div class='composer-tools'>
               <div class='tool-group'>
@@ -138,7 +140,7 @@
               </div>
             </div>
           </div>
-          <p class='composer-note' id='composerNote'>Zimba can make mistakes. Check important information.</p>
+          <div class='composer-meta'><p class='composer-note' id='composerNote' aria-live='polite'>Zimba can make mistakes. Check important information.</p><span id='characterCount'>0 / 4,000</span><span class='send-hint'><kbd>Enter</kbd> send · <kbd>Shift Enter</kbd> new line</span></div>
         </footer>
       </main>
     </div>

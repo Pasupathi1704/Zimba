@@ -10,6 +10,7 @@ const fileInput = document.querySelector("#fileInput");
 const attachmentList = document.querySelector("#attachmentList");
 const composerNote = document.querySelector("#composerNote");
 const sendButton = document.querySelector("#sendButton");
+const characterCount = document.querySelector("#characterCount");
 const imageButton = document.querySelector("#imageButton");
 const voiceButton = document.querySelector(".voice-button");
 const voiceOutputToggle = document.querySelector("#voiceOutputToggle");
@@ -258,9 +259,10 @@ document.querySelectorAll(".agent-option").forEach((option) => {
 
 document.querySelectorAll(".suggestion").forEach((suggestion) => {
   suggestion.addEventListener("click", () => {
-    promptInput.value = suggestion.querySelector("strong").textContent + ". ";
+    promptInput.value = suggestion.dataset.prompt || suggestion.querySelector("strong").textContent;
     promptInput.focus();
     resizeInput();
+    updateComposerState();
   });
 });
 
@@ -288,7 +290,17 @@ function resizeInput() {
   promptInput.style.height = `${Math.min(promptInput.scrollHeight, 110)}px`;
 }
 
-promptInput.addEventListener("input", resizeInput);
+function updateComposerState() {
+  const length = promptInput.value.length;
+  characterCount.textContent = `${length.toLocaleString()} / 4,000`;
+  characterCount.classList.toggle("visible", length > 0);
+  sendButton.disabled = isSending || (!promptInput.value.trim() && attachments.length === 0);
+}
+
+promptInput.addEventListener("input", () => {
+  resizeInput();
+  updateComposerState();
+});
 promptInput.addEventListener("keydown", (event) => {
   if (event.key === "Enter" && !event.shiftKey) {
     event.preventDefault();
@@ -297,6 +309,7 @@ promptInput.addEventListener("keydown", (event) => {
 });
 
 sendButton.addEventListener("click", sendMessage);
+updateComposerState();
 imageButton?.addEventListener("click", generateImage);
 if (voiceOutputToggle) {
   voiceOutputToggle.addEventListener("click", () => {
@@ -569,7 +582,8 @@ function setComposerBusy(busy) {
   sendButton.disabled = busy;
   if (imageButton) imageButton.disabled = busy;
   sendButton.textContent = busy ? "…" : "↑";
-    composerNote.textContent = busy ? "Zimba is thinking..." : "Zimba can make mistakes. Check important information.";
+  composerNote.textContent = busy ? "Zimba is thinking..." : "Zimba can make mistakes. Check important information.";
+  if (!busy) updateComposerState();
 }
 
 function readFile(file) {
@@ -663,6 +677,7 @@ function renderAttachments() {
     });
     attachmentList.appendChild(chip);
   });
+  updateComposerState();
 }
 
 function renderMarkdown(markdown) {
@@ -730,10 +745,17 @@ function showError(message) {
 
 const themeToggle = document.getElementById("themeToggle");
 if (themeToggle) {
+  const setTheme = (isLight) => {
+    document.documentElement.classList.toggle("light-theme", isLight);
+    document.body.classList.toggle("light-theme", isLight);
+    document.querySelector(".app-shell").classList.toggle("light-theme", isLight);
+    themeToggle.setAttribute("aria-label", isLight ? "Use dark theme" : "Use light theme");
+    themeToggle.title = isLight ? "Use dark theme" : "Use light theme";
+  };
+  setTheme(window.localStorage.getItem("zimba-theme") === "light");
   themeToggle.addEventListener("click", () => {
-    document.documentElement.classList.toggle("light-theme");
-    document.body.classList.toggle("light-theme");
-    document.querySelector(".app-shell").classList.toggle("light-theme");
+    const isLight = !document.documentElement.classList.contains("light-theme");
+    setTheme(isLight);
+    window.localStorage.setItem("zimba-theme", isLight ? "light" : "dark");
   });
 }
-
